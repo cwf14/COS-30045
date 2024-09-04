@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Data Visualisation Exercise 1" />
+    <meta name="keywords" content="HTML, CSS" />
+    <meta name="author" content="Your name here" />
+
+    <title>Task 1.1 HTML and CSS Demo Page</title>
+    <!--Insert description of exercise  -->
+
+    <style>
+        		.container {
+			background-color: #FFFFFF; /* White background for the box */
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			padding: 15px;
+		}
+
+		nav {
+			background-color: #1565C0; /* Medium blue for the menu */
+			padding: 10px;
+			border-radius: 10px 10px 0 0;
+			margin-bottom: 20px;
+		}
+
+		nav ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		nav ul li {
+			margin: 0;
+		}
+
+		nav ul li a {
+			color: #FFFFFF; /* White text for menu items */
+			text-decoration: none;
+			font-weight: bold;
+			padding: 10px 20px;
+			display: block;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+		}
+
+		nav ul li a:hover {
+			background-color: #638dcc; /* Darker blue on hover */
+		}
+				body {
+			font-family: sans-serif;
+			background-color: #E3F2FD; /* Light blue background */
+			color: #333333; /* Dark grey for main text */
+			margin: 0;
+			padding: 20px;
+		}
+
+		h1 {
+			color: #1565C0; /* Medium blue for main heading */
+			border-bottom: 3px solid #BBDEFB; /* Light blue underline */
+			padding-bottom: 10px;
+		}
+
+		h2 {
+			color: #3b89ff; /* Teal for subheadings */
+			margin-top: 20px;
+		}
+
+		h3 {
+			color: #210354; /* Amber for author name */
+			font-style: italic;
+			margin-top: 10px;
+		}
+
+		p {
+			line-height: 1.6;
+			font-size: 16px;
+		}
+
+		i {
+			color: #0277BD;
+		}
+		ul {
+			list-style-type: disc;
+			padding-left: 20px;
+		}
+
+		ul li {
+			margin-bottom: 5px;
+			color: #0277BD; /* Light blue for list items */
+		}
+
+		figure {
+			margin: 20px 0;
+			text-align: center;
+		}
+        img {
+			margin: 10px;
+		}
+
+		figcaption {
+			font-size: 14px;
+			color: #3e3838; /* Medium grey for caption */
+            margin: 10px;
+		}
+        footer {
+            margin-top: 30px;
+            padding: 15px 0px 0px 0px; 
+            background-color: #e8f0ff; 
+            border-top: 2px solid #3052d6; 
+            color: #0D47A1; 
+            text-align: center;
+       
+            font-weight: bold; 
+            border-radius: 0 0 10px 10px; 
+        }
+
+
+		a {
+			color: #1565C0; /* Blue for links */
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+		<nav>
+			<ul>
+				<li><a href="../main.html">Main Page</a></li>
+				<li><a href="lab1.1.html">Lab1.1</a></li>
+				<li><a href="lab1.2.html">Lab1.2</a></li>
+				<li><a href="lab1.3.html">Lab1.3</a></li>
+			</ul>
+		</nav>
+		
+    <h1>Drawing Shapes with SVG</h1>
+    <h2>Author:Chai Wan Fei</h2>
+
+    <svg width="500" height="60" style="background-color:slategrey;">
+
+        <g transform="translate(20,0)">
+            <circle cx="25" , cy="30"  r="25" fill="cornflowerblue"/>
+            <rect x="50", y="5" width="50" height="50" fill="rgb(100,149,237)" />
+            <ellipse cx="140" cy="30" rx="40" ry="25" fill="rgba(100,149,237,0.5)" />"
+            <line x1="0" y1="30" x2="180" y2="30" stroke="black" stroke-width="5"/>
+        </g>
+
+    </svg>
+    <p>Pet ownership in 2019</p>
+    <svg width="500" height="250" style="background-color:slategrey;">
+        <rect x="50" , y="100" width="50" height="90" fill="rgb(100,149,237)" />
+        <rect x="110" , y="130" width="50" height="60" fill="rgb(100,149,237)" />
+        <rect x="170" , y="150" width="50" height="40" fill="rgb(100,149,237)" />
+        <rect x="230" , y="170" width="50" height="20" fill="rgb(100,149,237)" />
+        <rect x="290" , y="180" width="50" height="10" fill="rgb(100,149,237)" />
+        <rect x="350" , y="180" width="50" height="10" fill="rgb(100,149,237)" />
+
+    </svg>
+    <br />
+    <br />
+
+    <footer>COS30045 Data Visualisation
+        <br>Semester 2 2024
+        <br>Chai Wan Fei
+    </footer>
+
+</body>
+</html>
