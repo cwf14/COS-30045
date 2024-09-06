@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Data Visualisation Exercise 1" />
+    <meta name="keywords" content="HTML, CSS" />
+    <meta name="author" content="Your name here" />
+
+    <title>Task 1.1 HTML and CSS Demo Page</title>
+    <!--Insert description of exercise  -->
+
+    <style>
+        		.container {
+			background-color: #FFFFFF; /* White background for the box */
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			padding: 15px;
+		}
+
+		nav {
+			background-color: #1565C0; /* Medium blue for the menu */
+			padding: 10px;
+			border-radius: 10px 10px 0 0;
+			margin-bottom: 20px;
+		}
+
+		nav ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		nav ul li {
+			margin: 0;
+		}
+
+		nav ul li a {
+			color: #FFFFFF; /* White text for menu items */
+			text-decoration: none;
+			font-weight: bold;
+			padding: 10px 20px;
+			display: block;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+		}
+
+		nav ul li a:hover {
+			background-color: #638dcc; /* Darker blue on hover */
+		}
+		body {
+			font-family: sans-serif;
+			background-color: #E3F2FD; /* Light blue background */
+			color: #333333; /* Dark grey for main text */
+			margin: 0;
+			padding: 20px;
+		}
+
+		h1 {
+			color: #1565C0; /* Medium blue for main heading */
+			border-bottom: 3px solid #BBDEFB; /* Light blue underline */
+			padding-bottom: 10px;
+		}
+
+		h2 {
+			color: #3b89ff; /* Teal for subheadings */
+			margin-top: 20px;
+		}
+
+		h3 {
+			color: #210354; /* Amber for author name */
+			font-style: italic;
+			margin-top: 10px;
+		}
+
+		p {
+			line-height: 1.6;
+			font-size: 16px;
+		}
+
+		i {
+			color: #0277BD;
+		}
+		ul {
+			list-style-type: disc;
+			padding-left: 20px;
+		}
+
+		ul li {
+			margin-bottom: 5px;
+			color: #0277BD; /* Light blue for list items */
+		}
+
+		figure {
+			margin: 20px 0;
+			text-align: left;
+		}
+        img {
+			margin: 10px;
+		}
+
+		figcaption {
+			font-size: 14px;
+			color: #3e3838; 
+            margin: 10px;
+		}
+
+        footer {
+            margin-top: 30px;
+            padding: 15px 0px 0px 0px; 
+            background-color: #e8f0ff; 
+            border-top: 2px solid #3052d6; 
+            color: #0D47A1; 
+            text-align: center;
+       
+            font-weight: bold; 
+            border-radius: 0 0 10px 10px; 
+        }
+
+		a {
+			color: #1565C0; 
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+        button {
+            margin: 5px;
+            padding: 10px 20px; 
+            background-color: #bee4ff; 
+            border: none;
+            border-radius: 5px; 
+            color: #333;
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+         }
+
+        button:hover {
+            background-color: #92caff; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+		<nav>
+			<ul>
+				<li><a href="../main.html">Main Page</a></li>
+				<li><a href="lab1.1.html">Lab1.1</a></li>
+				<li><a href="lab1.2.html">Lab1.2</a></li>
+				<li><a href="lab1.3.html">Lab1.3</a></li>
+			</ul>
+		</nav>
+		
+    <h1>Introduction of a pet into their household during the pandemic</h1>
+    <h2>Pets and the Pandemic</h2>
+    <h3>Author: Chai Wan Fei</h3>
+    <p>
+        A report from <i><b>Animal Medicines Australia (AMA)</b></i> has found that many Australians took the opportunity to introduce a pet into their household during the pandemic. Their survey indicated that there was a significant increase in the percent of households taking in a new dog, fish or bird. Their research also indicated that pets had a number of positive influences on their lives such as:
+    </p>
+    <br />
+    <ul>
+        <li>companionship</li>
+        <li>better mental health</li>
+        <li>joy and happiness.</li>
+    </ul>
+    <br />
+    <button class="button1" onclick="show('pet2019.png','Fig1. Percent of most popular pet owned by Australians in 2019','pet2019')">2019</button>
+    <button class="button2" onclick="show('pet2021.png','Fig2. Percent of most popular pet owned by Australians in 2021','pet2021')">2021</button>
+    <button class="button3" onclick="show('petboth.png','Fig3. Percent of most popular pet owned by Australians in 2019 and 2021','petboth')">Both</button>
+    
+    <figure> 
+        <img id="ChartImg" style="width: 50%; display: none" />
+        <figcaption id="ChartCap"></figcaption>
+    </figure>
+    <script>
+        function show(Image, ImgDesc, ImgAlt) {
+            document.getElementById('ChartImg').src = Image
+            document.getElementById('ChartImg').alt = ImgAlt
+            document.getElementById('ChartCap').innerHTML = ImgDesc
+            document.getElementById('ChartImg').style.display = 'block';
+        }
+    </script>
+    <p>
+        With the increase in pet ownership the AMA are encouraging policy makers to consider the needs of companion animals and their owners when considering rental, strata and body corporate regulations are well as accepting animals in public places and transport.
+    </p>
+
+
+
+    <footer>COS30045 Data Visualisation
+    <br>Semester 2 2024
+    <br>Chai Wan Fei
+    </footer>
+
+</body>
+</html>
