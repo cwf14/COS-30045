@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="description"	content="Data Visualisation Exercise 1"/>
+	<meta name="keywords"		  content="HTML, CSS, D3"/>
+	<meta name="author"			  content="Chai Wan Fei"/>
+
+	<title>Task 3.2 D3 Drawing with Data - Scatter Plot</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+	<!--Insert description of exercise  -->
+
+	<style>
+        .container #chart{
+			background-color: #FFFFFF; /* White background for the box */
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			padding: 15px;
+		}
+
+    
+
+		nav {
+			background-color: #1565C0; /* Medium blue for the menu */
+			padding: 10px;
+			border-radius: 10px 10px 0 0;
+			margin-bottom: 20px;
+		}
+
+		nav ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		nav ul li {
+			margin: 0;
+		}
+
+		nav ul li a {
+			color: #FFFFFF; /* White text for menu items */
+			text-decoration: none;
+			font-weight: bold;
+			padding: 10px 20px;
+			display: block;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+		}
+
+		nav ul li a:hover {
+			background-color: #638dcc; /* Darker blue on hover */
+		}
+		body {
+			font-family: sans-serif;
+			background-color: #E3F2FD; /* Light blue background */
+			color: #333333; /* Dark grey for main text */
+			margin: 0;
+			padding: 20px;
+		}
+
+		h1 {
+			color: #1565C0; /* Medium blue for main heading */
+			border-bottom: 3px solid #BBDEFB; /* Light blue underline */
+			padding-bottom: 10px;
+		}
+
+		footer {
+            margin-top: 30px;
+            padding: 15px 0px 0px 0px; 
+            background-color: #e8f0ff; 
+            border-top: 2px solid #3052d6; 
+            color: #0D47A1; 
+            text-align: center;
+       
+            font-weight: bold; 
+            border-radius: 0 0 10px 10px; 
+        }
+
+	</style>
+
+</head>
+
+<body>
+	<div class="container">
+		<nav>
+			<ul>
+				<li><a href="../main.html">Main Page</a></li>
+				<li><a href="lab3.1.html">Lab3.1</a></li>
+				<li><a href="lab3.2.html">Lab3.2</a></li>
+			
+			</ul>
+		</nav>
+		
+	<h1>Drawing with Data - Scatter Plot</h1>
+	<div id="chart">
+    <script>
+        var w = 700;
+        var h = 300;
+        var padding = 40;  //incresed the padding to make shown the graph nicely
+
+        var dataset = [
+            [2,8],
+            [3,5],
+            [5,17],
+            [6,6],
+            [6,12],
+            [7,20],
+            [8,22],
+            [10,11],
+            [5,12],
+            [6,16],
+
+		// [5,20],
+		//[500,90],
+        // [250,50],
+    	//[100,33],
+        //[330,95],
+        //[410,12],
+        //[475,44],
+        // [25,67],
+        //    [85,21],
+        //    [220,88],
+        ];
+		
+
+        // To shift the x scale properly             
+		var xScale = d3.scaleLinear()
+                .domain([0, d3.max(dataset, function (d) {
+                    return d[0] ;
+                })])
+                .range([padding, w - padding]);
+		// To shift the y scale properly  
+        var yScale = d3.scaleLinear()
+                .domain([0, d3.max(dataset, function (d) {
+                    return d[1];
+                })])
+                .range([h - padding, padding]);
+
+        
+        var xAxis = d3.axisBottom(xScale).ticks(5);
+		var yAxis = d3.axisLeft(yScale).ticks(5);
+		
+		var svg = d3.select("#chart")  // Select the specific div")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h);
+
+        svg.selectAll("circle")
+            .data(dataset)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){
+                return xScale(d[0]);
+            })
+            .attr("cy", function(d){     //(y cordinate) top left start form(0,0)
+				return yScale(d[1]);
+            })
+            .attr("r", 5) 
+			.attr("r",function(d){
+            	return Math.sqrt(h-yScale(d[1]));
+         	})
+            .attr("fill","slategrey");
+            
+        svg.selectAll("text")
+            .data(dataset)
+            .enter()
+            .append("text")
+            .text(function(d){
+                return d[0]+","+d[1];
+            })
+            .attr("x",function(d){
+                return xScale(d[0]) - 20;
+            })
+            .attr("y",function(d){
+                return yScale(d[1]) -15 ;
+            });
+		
+		//append x-axis
+		svg.append("g")
+			.attr("transform", "translate(0, "+ (h - padding ) +")")
+            .call(xAxis);
+		//append y-axis
+		svg.append("g")
+			.attr("transform", "translate("+ padding +", 0)")
+            .call(yAxis);
+
+		// Add x-axis label
+				svg.append("text")
+			.attr("text-anchor", "end")
+			.attr("x", w / 2)
+			.attr("y", h - 5) // Adjust position based on padding
+			.text("Tree Age (year)")
+			.attr("fill", "#333")
+			.attr("font-size", "12px");
+
+		// Add y-axis label
+		svg.append("text")
+			.attr("text-anchor", "end")
+			.attr("transform", "rotate(-90)")
+			.attr("x", -h / 3)
+			.attr("y", padding - 25) // Adjust position based on padding
+			.text("Tree Height (m)")
+			.attr("fill", "#333")
+			.attr("font-size", "12px");
+
+
+    </script>
+    </div>
+   <br>
+    <footer>COS30045 Data Visualisation
+		<br>Semester 2 2024
+		<br>Chai Wan Fei
+	</footer>
+</body>
+</html>
