@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="description"	content="Data Visualisation Exercise 1"/>
+	<meta name="keywords"		  content="HTML, CSS, D3, Data Import"/>
+	<meta name="author"			  content="Chai Wan Fei"/>
+
+	<title>Task 7.2  D3 Pie Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+	
+	<!--Insert description of exercise  -->
+
+	<style>
+        .container #chart{
+			background-color: #FFFFFF; /* White background for the box */
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			padding: 15px;
+		}
+
+		nav {
+			background-color: #1565C0; /* Medium blue for the menu */
+			padding: 10px;
+			border-radius: 10px 10px 0 0;
+			margin-bottom: 20px;
+		}
+
+		nav ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		nav ul li {
+			margin: 0;
+		}
+
+		nav ul li a {
+			color: #FFFFFF; /* White text for menu items */
+			text-decoration: none;
+			font-weight: bold;
+			padding: 10px 20px;
+			display: block;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+		}
+
+		nav ul li a:hover {
+			background-color: #638dcc; /* Darker blue on hover */
+		}
+		body {
+			font-family: sans-serif;
+			background-color: #E3F2FD; /* Light blue background */
+			color: #333333; /* Dark grey for main text */
+			margin: 0;
+			padding: 20px;
+		}
+
+		h1 {
+			color: #1565C0; /* Medium blue for main heading */
+			border-bottom: 3px solid #BBDEFB; /* Light blue underline */
+			padding-bottom: 10px;
+		}
+		h3 {
+			color: #210354; /* Amber for author name */
+			font-style: italic;
+			margin-top: 10px;
+		}
+
+		footer {
+            margin-top: 30px;
+            padding: 15px 0px 0px 0px; 
+            background-color: #e8f0ff; 
+            border-top: 2px solid #3052d6; 
+            color: #0D47A1; 
+            text-align: center;
+            font-weight: bold; 
+            border-radius: 0 0 10px 10px; 
+        }
+        
+
+
+	</style>
+
+</head>
+
+<body>
+	<div class="container">
+		<nav>
+			<ul>
+				<li><a href="../main.html">Main Page</a></li>
+				<li><a href="lab7.1.html">Lab7.1</a></li>
+				<li><a href="lab7.2.html">Lab7.2</a></li>
+				<li><a href="lab7.3.html">Lab7.3</a></li>
+			</ul>
+		</nav>
+		
+	<h1>Pie Chart</h1>
+	<h3>Author:Chai Wan Fei</h3>
+	<p id="chart"></p>
+	<script src="lab7.2.js"></script>
+   <br>
+    <footer>COS30045 Data Visualisation
+		<br>Semester 2 2024
+		<br>Chai Wan Fei
+	</footer>
+</body>
+</html>
