@@ -8,10 +8,10 @@ var dataset = [
     { apples: 23, oranges: 17, grapes: 43 }
 ];
 
-// Define SVG container
+// Define SVG container (increase width to fit the chart and legend)
 var svg = d3.select("#chart")
             .append("svg")
-            .attr("width", w)
+            .attr("width", w + 100)  // Add space for the legend
             .attr("height", h);
 
 // Stack the data for 'grapes', 'oranges', and 'apples' columns in reverse order
@@ -32,7 +32,7 @@ var yScale = d3.scaleLinear()
                 })])
                 .range([h,0]);
 
-// Define a custom color scale for 'apples' (blue), 'oranges' (orange), and 'grapes' (green)
+// Define a custom color scale for 'apples' (green), 'oranges' (orange), and 'grapes' (blue)
 var color = d3.scaleOrdinal()
               .domain(["apples", "oranges", "grapes"])
               .range(["#2ca02c", "#ff7f0e", "#1f77b4"]);    // color for the stack bar chart
@@ -42,8 +42,8 @@ var groups = svg.selectAll("g")
                 .data(series)
                 .enter()
                 .append("g")
-                .style("fill", function(d,i) {
-                    return color(i);
+                .style("fill", function(d) {
+                    return color(d.key);  // Use the stack key to match colors
                 });
 
 // Add rectangles for each stack segment
@@ -61,3 +61,28 @@ var rects = groups.selectAll("rect")
                         return yScale(d[0]) - yScale(d[1]);
                     })
                     .attr("width", xScale.bandwidth());
+
+// Create the legend to the right of the chart
+var legend = svg.selectAll(".legend")
+                .data(color.domain())
+                .enter()
+                .append("g")
+                .attr("class", "legend")
+                .attr("transform", function(d, i) {
+                    return "translate(" + (w + 10) + "," + (i * 20) + ")";  // Position to the right of the chart
+                });
+
+// Add colored rectangles for the legend
+legend.append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", 18)
+    .attr("height", 18)
+    .style("fill", color);
+
+// Add text labels for the legend
+legend.append("text")
+    .attr("x", 24)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .text(function(d) { return d; });
