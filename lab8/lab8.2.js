@@ -14,7 +14,7 @@ function init() {
 
     //define color
     var color = d3.scaleQuantize()
-                .range(d3.schemePurples[9]);
+                .range(d3.schemePastel1);
 
 
     var svg = d3.select("#chart")
@@ -22,16 +22,26 @@ function init() {
             .attr("width", w)
             .attr("height", h);
 
+    // Create a div element for the tooltip and set its style
+    var tooltip = d3.select("#chart").append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("background-color", "white")
+        .style("border", "1px solid #ccc")
+        .style("padding", "5px")
+        .style("visibility", "hidden");  // Initially hidden
+
+
     // Load the unemployment data from the CSV
     d3.csv("VIC_LGA_unemployment.csv").then(function(data) {
         // Set color domain based on unemployment values
-        color.domain([
+        color.domain([        
             d3.min(data, function(d) { return d.unemployed; }),
             d3.max(data, function(d) { return d.unemployed; })
         ]);
     
     
-        d3.json("LGA_VIC.json").then(function(json) {
+        d3.json("https://raw.githubusercontent.com/cwf14/COS-30045/refs/heads/main/lab8/LGA_VIC.json").then(function(json) {
 
             //Merge the ag. data and GeoJSON
             //Loop through once for each ag. data value
@@ -81,7 +91,18 @@ function init() {
                 })
                 .attr("r", 5)
                 .style("fill", "red")
-                .style("opacity", 0.75);
+                .style("opacity", 0.75)
+                .on("mouseover", function(event, d) {
+                tooltip.style("visibility", "visible")
+                    .text(d.place);   //the column in the file
+                })
+                .on("mousemove", function(event) {
+                    tooltip.style("top", (event.pageY - 10) + "px")
+                           .style("left", (event.pageX + 10) + "px");
+                })
+                .on("mouseout", function() {
+                    tooltip.style("visibility", "hidden");
+                });
                 });
             
         
